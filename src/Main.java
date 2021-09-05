@@ -15,13 +15,14 @@ public class Main {
                 "orario inizio", JOptionPane.QUESTION_MESSAGE);
         String orarioFine= JOptionPane.showInputDialog(null, "Inserisci l'orario di fine in formato HH:MM",
                 "orario di fine", JOptionPane.QUESTION_MESSAGE);
-        if(stringCheck(orarioInizio) && stringCheck(orarioFine)){
+        if(stringCheck(orarioInizio) && stringCheck(orarioFine) && oraFineMaggioreDiOraInizio(splitOreDaMinuti(orarioInizio),splitOreDaMinuti(orarioFine))){
             cliente.setOrarioInizio(orarioInizio);
             cliente.setOrarioFine(orarioFine);
             int minutiUtilizzo = minutiUtilizzo(splitOreDaMinuti(cliente.getOrarioInizio()), splitOreDaMinuti(cliente.getOrarioFine()));
             System.out.println(minutiUtilizzo);
             int quartiDora = calcolaQuartiDora(minutiUtilizzo);
             cliente.setPrezzo(calcolaTariffa(quartiDora));
+            JOptionPane.showMessageDialog(null, cliente,  "Stampa dati cliente e prezzo", JOptionPane.INFORMATION_MESSAGE);
             System.out.println(cliente);
         }else{
             JOptionPane.showInputDialog(null, "errore, orario non valido",  "Errore", JOptionPane.INFORMATION_MESSAGE);
@@ -63,6 +64,15 @@ public class Main {
         }
         int minutiUtilizzo= (differenzaOre * 60) + differenzaMinuti;
         return minutiUtilizzo;
+    }
+
+    public static boolean oraFineMaggioreDiOraInizio(OraFormattata orarioInizio, OraFormattata orarioFine){
+        if(Integer.parseInt(orarioFine.getOre()) > Integer.parseInt(orarioInizio.getOre())){
+           return true;
+        }else if(Integer.parseInt(orarioFine.getOre()) == Integer.parseInt(orarioInizio.getOre()) && Integer.parseInt(orarioFine.getMinuti()) > Integer.parseInt(orarioInizio.getMinuti())){
+            return true;
+        }
+        return false;
     }
     public static int calcolaQuartiDora(int minutiUtilizzo){
         int quantiQuartiDora = minutiUtilizzo / 15;
