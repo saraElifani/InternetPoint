@@ -20,11 +20,9 @@ public class Main {
             cliente.setOrarioInizio(orarioInizio);
             cliente.setOrarioFine(orarioFine);
             int minutiUtilizzo = minutiUtilizzo(splitOreDaMinuti(cliente.getOrarioInizio()), splitOreDaMinuti(cliente.getOrarioFine()));
-            System.out.println(minutiUtilizzo);
             int quartiDora = calcolaQuartiDora(minutiUtilizzo);
             cliente.setPrezzo(calcolaTariffa(quartiDora));
             JOptionPane.showMessageDialog(null, cliente + " per un tempo di utilizzo pari a: "+ convertMinutesToHours(minutiUtilizzo) + " ore.",  "Stampa dati cliente e prezzo", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println(cliente);
         }else{
             JOptionPane.showInputDialog(null, "errore, orario non valido oppure l'orario di inizio e' minore di quello di fine",  "Errore", JOptionPane.INFORMATION_MESSAGE);
         }

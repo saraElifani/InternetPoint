@@ -52,11 +52,11 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", orarioInizio='" + orarioInizio + '\'' +
-                ", orarioFine='" + orarioFine + '\'' +
-                ", prezzo da pagare=" + prezzo +
+                "nome= '" + nome + '\'' +
+                ", cognome= '" + cognome + '\'' +
+                ", orarioInizio= '" + orarioInizio + '\'' +
+                ", orarioFine= '" + orarioFine + '\'' +
+                ", prezzo da pagare= " + prezzo +
                 '}';
     }
 }
