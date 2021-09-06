@@ -56,7 +56,7 @@ public class Cliente {
                 ", cognome='" + cognome + '\'' +
                 ", orarioInizio='" + orarioInizio + '\'' +
                 ", orarioFine='" + orarioFine + '\'' +
-                ", prezzo=" + prezzo +
+                ", prezzo da pagare=" + prezzo +
                 '}';
     }
 }

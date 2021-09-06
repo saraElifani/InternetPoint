@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,10 +23,10 @@ public class Main {
             System.out.println(minutiUtilizzo);
             int quartiDora = calcolaQuartiDora(minutiUtilizzo);
             cliente.setPrezzo(calcolaTariffa(quartiDora));
-            JOptionPane.showMessageDialog(null, cliente,  "Stampa dati cliente e prezzo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, cliente + " per un tempo di utilizzo pari a: "+ convertMinutesToHours(minutiUtilizzo) + " ore.",  "Stampa dati cliente e prezzo", JOptionPane.INFORMATION_MESSAGE);
             System.out.println(cliente);
         }else{
-            JOptionPane.showInputDialog(null, "errore, orario non valido",  "Errore", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showInputDialog(null, "errore, orario non valido oppure l'orario di inizio e' minore di quello di fine",  "Errore", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public static boolean stringCheck(String orario){
@@ -64,6 +65,21 @@ public class Main {
         }
         int minutiUtilizzo= (differenzaOre * 60) + differenzaMinuti;
         return minutiUtilizzo;
+    }
+
+    public static String convertMinutesToHours(Integer minutes) {
+        String label = "";
+        // il numero di ore
+        int hourInt = minutes / 60;
+        // i minuti restanti
+        int minuteInt = minutes % 60;
+        // formattiamo i minuti con due cifre intere
+        NumberFormat formato = NumberFormat.getIntegerInstance();
+        formato.setMinimumIntegerDigits(2);
+        String minuteString = formato.format(minuteInt);
+        // componiamo il tutto in una stringa
+        label = hourInt + ":" + minuteString;
+        return label;
     }
 
     public static boolean oraFineMaggioreDiOraInizio(OraFormattata orarioInizio, OraFormattata orarioFine){
